@@ -1,0 +1,14 @@
+@use '../../styles' as *;
+
+.item-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  .item:not(:last-child) {
+    margin-right: $space-xl;
+  }
+
+  .item {
+    margin-bottom: $space-xl
+  }
+}

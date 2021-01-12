@@ -1,0 +1,18 @@
+@use '../../styles' as *;
+
+$margin: 20px;
+
+.category-title {
+  margin-bottom: $margin  ;
+  font-family: $font-family;
+  font-size: $font-size-l;
+
+  span {
+    margin-bottom: $margin;
+    font-weight: bold;
+  }
+
+  .separator {
+    margin: 0;
+  }
+}

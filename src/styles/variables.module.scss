@@ -1,0 +1,9 @@
+@import 'font';
+
+:export {
+  fontFamily: $font-family;
+  fontSizeS: $font-size-s;
+  fontSizeM: $font-size-m;
+  fontSizeL: $font-size-l;
+  lineHeight: $line-height;
+}

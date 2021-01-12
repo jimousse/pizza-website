@@ -1,0 +1,7 @@
+body {
+  margin: 0;
+}
+
+#text-measuring-canvas {
+  display: none;
+}

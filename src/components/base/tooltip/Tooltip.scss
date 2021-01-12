@@ -1,0 +1,13 @@
+@use '../../../styles' as *;
+
+.tooltip {
+  position: fixed;
+  z-index: 1000;
+  background-color: #000;
+  color: #FFF;
+  padding: $space-l;
+  font-size: $font-size-s;
+  font-family: $font-family;
+  border-radius: $radius-l;
+  max-width: 200px;
+ }

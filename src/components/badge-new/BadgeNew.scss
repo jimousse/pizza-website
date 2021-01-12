@@ -1,0 +1,12 @@
+@use '../../styles' as *;
+
+.badge-new {
+  background-color: #e21e3d;
+  border-radius: 50%;
+  font-size: $font-size-s;
+  color: #fff;
+  padding: $space-l;
+  margin: $space-l;
+  width: fit-content;
+  border: $border-width-m solid white;
+}

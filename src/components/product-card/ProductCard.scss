@@ -1,0 +1,33 @@
+@use '../../styles' as *;
+
+$color-name: #000;
+$color-description: #626262;
+$max-width: 250px;
+
+.product-card {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  font-family: $font-family;
+  max-width: $max-width;
+
+  .badge {
+    position: absolute;
+  }
+
+  img {
+    width: $max-width;
+    height: 200px;
+  }
+
+  .name {
+    font-weight: bold;
+    color: $color-name;
+  }
+
+  .description {
+    padding-top: $space-l;
+    padding-bottom: $space-l;
+    color: $color-description;
+  }
+}
