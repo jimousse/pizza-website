@@ -1,37 +1,56 @@
 @use 'Styles' as *;
+@import 'Styles/mixins';
 
-$font-color: #fff;
-$focus-ring-color: #fff;
-$color: #e21e3d;
-$color-hovered: #c2132f;
+@mixin spacing {
+  padding-left: $space-l;
+  padding-right: $space-l;
+  padding-top: $space-m;
+  padding-bottom: $space-m;
+}
 
-.custom-button {
-  background-color: $color;
-  border-style: solid;
-  border-width: 1px;
-  font-size: $font-size-s;
-  color: $font-color;
+.base {
   cursor: pointer;
-  font-family: $font-family;
-  font-weight: bold;
-  padding: $space-l $space-l $space-l $space-l;
+  @include spacing;
+  box-sizing: border-box;
+  position: relative;
+  border: $border-width-s solid $border-color;
+  background-color: transparent;
+  @include focus-ring;
 
-  &:hover {
-    background-color: $color-hovered;
+  .beforeElement {
+    content: '';
+    background-color: $color-primary; // default color
+    position: absolute;
+    top: -$border-width-s;
+    left: -$border-width-s;
+    width: calc(100% + #{2*$border-width-s});
+    height: calc(100% + #{2*$border-width-s});
+    z-index: -1;
   }
 
   &:focus {
-    outline: none;
-    box-shadow: inset 0px 0px 0px 1px $color,
-    inset 0px 0px 0px 3px $focus-ring-color;
-
-    &:hover {
-      box-shadow: inset 0px 0px 0px 1px $color-hovered,
-      inset 0px 0px 0px 3px $focus-ring-color;
+    border-color: transparent;
+  }
+  
+  &:hover {
+    .beforeElement {
+      filter: brightness(0.9);
     }
   }
 
-  .arrow {
-    padding-left: $space-l;
+  @mixin active-look {
+    border-color: transparent;
+    .beforeElement {
+      filter: brightness(0.8);
+    }
+  }
+
+  // defining this class, to programmatically trigger it
+  &.active {
+    @include active-look;
+  }
+
+  &:active {
+    @include active-look;
   }
 }

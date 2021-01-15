@@ -1,0 +1,10 @@
+@use 'sass:color';
+@import './colors';
+
+@mixin focus-ring {
+    &:focus {
+        outline: none;
+        box-shadow: inset 0px 0px 0px 1px $color-primary,
+        inset 0px 0px 0px 3px color.adjust($color-primary, $lightness: 30%);
+    }
+}

@@ -1,51 +1,85 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './Dropdown.scss';
+import CustomButton from '../button/CustomButton';
 
-const list = [ 'Apples', 'Oranges', 'Fraises' ];
+export  default function Dropdown (props) {
+  const listRef = useRef(null);
+  const [ isListOpen, setIsListOpen ] = useState(false);
+  const [ headerTitle, setHeaderTitle ] = useState(props.title);
+  const [ itemSelected, setItemSelected ] = useState(null);
 
-class Dropdown extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      isListOpen: false
-    };
-    this.toggleList = this.toggleList.bind(this);
+  function toggleList() {
+    setIsListOpen(!isListOpen);
   }
 
-  toggleList() {
-    const isOpen = this.state.isListOpen;
-    this.setState({
-      isListOpen: !isOpen
-    });
+  function selectItem(item) {
+    if (props.onItemSelect) {
+      props.onItemSelect(item.id);
+    }
+    setIsListOpen(item ? false : isListOpen);
+    setItemSelected(item.id);
+    setHeaderTitle(item.label);
   }
 
-  render() {
-    const { isListOpen } = this.state;
-    return (
-      <div className="dropdown">
-        <button
-          onClick={this.toggleList}
-          className="header">
-          Select Fruits
-
-          <span className={`arrow ${isListOpen ? 'up' : 'down'}`}/>
-        </button>
-        {isListOpen &&
-          <div className="dropdown-list">
-            {list.map(item => {
-              return (
-                <div className="dropdown-item">
-                  {item}
-                </div>
-              );
-            })}
-          </div>
+    // detect click outside
+    useEffect(() => {
+      if (isListOpen && listRef.current) {
+        listRef.current.focus();
+      }
+      // callback
+      // if list is open and click outsite the list, close the list
+      function handleClick(e) {
+        if (isListOpen && listRef.current && !listRef.current.contains(e.target)) {
+          toggleList();
         }
+      }
+      // attach click event
+      window.addEventListener('click', handleClick);
+      // remove event
+      return function() {
+        window.removeEventListener('click', handleClick);
+      };
+    });
 
-      </div>
-    );
-  }
+  return (
+    <div className="dropdown">
+      <CustomButton
+        id="dropdown-trigger"
+        backgroundColor="#e4e6e7"
+        onClick={toggleList}
+        isActive={isListOpen}
+        horizontalExtend
+      >
+        <span className="dropdown-label">{headerTitle}</span>
+        <span style={{ float: 'right' }}>{isListOpen ? '↑' : '↓'}</span>
+      </CustomButton>
+      {isListOpen &&
+        <div 
+          className="dropdown-list" 
+          ref={listRef}
+          tabIndex="0"
+        >
+          {props.items.map((item,i) => {
+            return (
+              <div
+                key={i}
+                onClick={() => selectItem(item)}
+                className="dropdown-item"
+              >
+                <span 
+                  style={{ visibility: item.id === itemSelected ? 'visible' : 'hidden' }} 
+                  className="dropdown-item-selected-icon"
+                >
+                  ✓
+                </span>
+                <span className="dropdown-item-label">{item.label}</span>
+              </div>
+            );
+          })}
+        </div>
+      }
+
+
+    </div>
+  );
 }
-
-export default Dropdown;

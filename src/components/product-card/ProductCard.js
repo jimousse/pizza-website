@@ -2,9 +2,16 @@ import React from 'react';
 import CustomButton from '../base/button/CustomButton';
 import BadgeNew from '../badge-new/BadgeNew';
 import TextWithTruncation from '../base/text-with-truncation/TextWithTruncation';
+import Dropdown from '../base/dropdown/Dropdown';
 import variables from '../../styles/variables.module.scss';
 
 import './ProductCard.scss';
+
+const list = [ 
+  { id: 's', label: '25 cm small' },
+  { id: 'm', label: '30 cm medium' },
+  { id: 'l', label: '35 cm large' }
+];
 
 class ProductCard extends React.Component {
   render() {
@@ -33,7 +40,12 @@ class ProductCard extends React.Component {
         <div className="badge">
           <BadgeNew />
         </div>}
-        <CustomButton text={'BESTEL ONLINE'} />
+        <div className="size-select">
+          <Dropdown title={"Select size"} items={list}  />
+        </div>
+        <CustomButton horizontalExtend>
+          <span className="order-label">Bestel Online</span>
+        </CustomButton>
       </div>
     );
   }

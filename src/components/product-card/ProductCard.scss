@@ -4,6 +4,8 @@ $color-name: #000;
 $color-description: #626262;
 $max-width: 250px;
 
+$color: purple;
+
 .product-card {
   display: flex;
   position: relative;
@@ -29,5 +31,16 @@ $max-width: 250px;
     padding-top: $space-l;
     padding-bottom: $space-l;
     color: $color-description;
+  }
+
+  .size-select {
+    margin-top: $space-l;
+    margin-bottom: $space-l;
+  }
+  .order-label {
+    font-family: $font-family;
+    font-size: $font-size-s;
+    color: #fff;
+    font-weight: bold;
   }
 }

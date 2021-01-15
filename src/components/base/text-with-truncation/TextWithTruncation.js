@@ -1,6 +1,11 @@
 import React from 'react';
 import Tooltip from '../tooltip/Tooltip';
-import { measureText, converRemIntoPx, truncateStringToWidth } from '../../../utils/general';
+import { generic } from 'Utils';
+const { 
+  measureText, 
+  converRemIntoPx, 
+  truncateStringToWidth 
+} = generic;
 
 
 class TextWithTruncation extends React.Component {

@@ -1,71 +1,58 @@
 @use 'Styles' as *;
 
-$color-hovered: #c2132f;
+// background color
+$dd-background-color-default: hsl(0, 0%, 80%);
+$dd-background-color-hovered: hsl(0, 0%, 65%);
+$dd-background-color-open: hsl(0, 0%, 55%);
+
+// font color
+$dd-font-color-default: #000;
+$dd-font-color-hovered: $color-primary-dark;
+$dd-font-color-open: $color-primary-dark;
+
 
 .dropdown {
-  width: fit-content;
+  position: relative;
 
-  &:hover {
-    .arrow {
-      border-color: white;
-    }
-
-    .header {
-      background-color: darkgrey;
-      color: white;
-    }
-  }
-
-  .arrow {
-    border: solid black;
-    border-width: 0 2px 2px 0;
-    display: inline-block;
-    padding: 2px;
-    margin-left: $space-m;
-
-    &.down {
-      transform: translate(0px, -2px) rotate(45deg);
-      -webkit-transform:  translate(0px, -2px) rotate(45deg);
-    }
-
-    &.up {
-      transform: rotate(-135deg);
-      -webkit-transform: rotate(-135deg);
-    }
+  .dropdown-label {
+    font-family: $font-family;
+    font-size: $font-size-s;
+    color: #333333;
+    float: left;
   }
 
   .dropdown-list {
+    outline: none;
+    position: absolute;
+    left: 0;
+    width: 100%;
     display: flex;
     flex-direction: column;
+    text-align: left;
+    border-width: 1px;
+    border-style: solid;
+    border-color: $color-primary;
+    background-color: #fff;
+    box-sizing: border-box;
+    z-index: 1000;
 
     .dropdown-item {
       font-family: $font-family;
       padding: $space-s $space-m $space-s $space-m;
+      display: flex;
+      cursor: pointer;
+      padding-left: $space-l;
+      padding-right: $space-l;
+
+      .dropdown-item-selected-icon {
+        color: $color-primary;
+        margin-right: $space-m;
+      }
 
       &:hover {
-        background-color: $color-hovered;
+        background-color: $color-primary-transparent;
       }
     }
   }
 }
 
-$font-color: #fff;
-$focus-ring-color: #fff;
-$color: #e21e3d;
-$color-hovered: darkgrey;
-
-.header {
-  background-color: lightgray;
-  border-style: solid;
-  border-width: 1px;
-  font-size: $font-size-s;
-  color: black;
-  cursor: pointer;
-  font-family: $font-family;
-  font-weight: bold;
-  padding: $space-l $space-l $space-l $space-l;
-
-  &:focus {
-    outline: none;
-  }
-}

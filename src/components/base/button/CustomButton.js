@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CustomButton.scss';
 
-class CustomedButton extends React.Component {
+export default function CustomButton(props) { 
 
-  render() {
-    return (
-      <button className="custom-button">
-        {this.props.text}
-      </button>
-    );
+  const classNames = [ 'base' ];
+  if (props.isActive) {
+    classNames.push('active');
   }
-}
 
-export default CustomedButton;
+  return (
+    <button 
+      style={{
+        width: props.horizontalExtend ? '100%' : null
+      }}
+      onClick={props.onClick}
+      className={classNames.join('  ')}
+    >
+      <span 
+        style={{ backgroundColor: props.backgroundColor }}
+        className="beforeElement"
+      />
+      {props.children}
+    </button>
+  );
+}
