@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import HelloMessage from './components/Hello';
+import PizzaApp from './components/PizzaApp';
 
 ReactDOM.render(
-    <HelloMessage />,
+    <PizzaApp />,
   document.getElementById('root')
 );
 

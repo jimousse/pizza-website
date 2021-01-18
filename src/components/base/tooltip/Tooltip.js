@@ -17,7 +17,7 @@ class Tooltip extends React.Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll');
+    window.removeEventListener('scroll', this.handleScroll.bind(this));
   }
 
   handleScroll() {

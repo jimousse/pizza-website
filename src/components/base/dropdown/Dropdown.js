@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import './Dropdown.scss';
 import CustomButton from '../button/CustomButton';
 
-export  default function Dropdown (props) {
+export  default function Dropdown(props) {
   const listRef = useRef(null);
   const [ isListOpen, setIsListOpen ] = useState(false);
   const [ headerTitle, setHeaderTitle ] = useState(props.title);

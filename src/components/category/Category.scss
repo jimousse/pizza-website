@@ -1,8 +1,6 @@
-@use '../../styles' as *;
+@use 'Styles' as *;
 
 .category {
   display: flex;
   flex-direction: column;
-  margin: $space-l;
-
 }
